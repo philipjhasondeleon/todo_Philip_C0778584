@@ -42,10 +42,14 @@
                     <navigationItem key="navigationItem" id="wa5-ox-v6U">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="x3Z-5A-Pof">
                             <connections>
+                                <action selector="addCategory:" destination="BYZ-38-t0r" id="LMS-8g-0yY"/>
                                 <segue destination="ly6-49-hYe" kind="show" id="Qu8-zd-vlV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="vxd-br-0yS" id="xpl-2L-dQK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nZg-R3-9cW">
-                                <rect key="frame" x="0.0" y="128" width="414" height="734"/>
+                                <rect key="frame" x="0.0" y="168" width="414" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoCell" id="V5g-JU-MYI">
@@ -74,39 +78,52 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oFA-I3-epP">
-                                <rect key="frame" x="20" y="88" width="374" height="32"/>
+                                <rect key="frame" x="20" y="128" width="374" height="32"/>
                                 <segments>
                                     <segment title="by date"/>
                                     <segment title="by name"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sortTool:" destination="ly6-49-hYe" eventType="valueChanged" id="Nyo-zV-5UC"/>
+                                </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsb-MD-dzS">
+                                <rect key="frame" x="20" y="88" width="374" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oFA-I3-epP" firstAttribute="top" secondItem="aRw-EU-NzN" secondAttribute="top" id="2Kx-HH-4QQ"/>
                             <constraint firstItem="nZg-R3-9cW" firstAttribute="leading" secondItem="aRw-EU-NzN" secondAttribute="leading" id="BNP-Wx-7WP"/>
-                            <constraint firstItem="nZg-R3-9cW" firstAttribute="top" secondItem="aRw-EU-NzN" secondAttribute="top" constant="40" id="C2r-sF-4ph"/>
+                            <constraint firstItem="nZg-R3-9cW" firstAttribute="top" secondItem="aRw-EU-NzN" secondAttribute="top" constant="80" id="C2r-sF-4ph"/>
+                            <constraint firstItem="xsb-MD-dzS" firstAttribute="top" secondItem="aRw-EU-NzN" secondAttribute="top" id="HKj-xo-G78"/>
                             <constraint firstItem="oFA-I3-epP" firstAttribute="leading" secondItem="aRw-EU-NzN" secondAttribute="leading" constant="20" id="MYS-dQ-9dp"/>
                             <constraint firstItem="aRw-EU-NzN" firstAttribute="trailing" secondItem="nZg-R3-9cW" secondAttribute="trailing" id="PEg-7C-rve"/>
+                            <constraint firstItem="aRw-EU-NzN" firstAttribute="trailing" secondItem="xsb-MD-dzS" secondAttribute="trailing" constant="20" id="Vga-Is-bTb"/>
                             <constraint firstItem="aRw-EU-NzN" firstAttribute="trailing" secondItem="oFA-I3-epP" secondAttribute="trailing" constant="20" id="YjH-sZ-pLB"/>
                             <constraint firstItem="aRw-EU-NzN" firstAttribute="bottom" secondItem="nZg-R3-9cW" secondAttribute="bottom" id="cyk-84-ism"/>
+                            <constraint firstItem="xsb-MD-dzS" firstAttribute="leading" secondItem="aRw-EU-NzN" secondAttribute="leading" constant="20" id="g5f-KF-CLU"/>
+                            <constraint firstItem="oFA-I3-epP" firstAttribute="top" secondItem="aRw-EU-NzN" secondAttribute="top" constant="40" id="h2M-i4-FxW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aRw-EU-NzN"/>
                     </view>
                     <navigationItem key="navigationItem" id="dR5-d0-kvF">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="mdn-qH-fH2">
                             <connections>
+                                <action selector="addTodo:" destination="ly6-49-hYe" id="dpR-W2-bO0"/>
                                 <segue destination="C1o-8Y-gJu" kind="show" id="nTn-kK-Ebl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="categoryLabel" destination="xsb-MD-dzS" id="ksz-PZ-kPA"/>
+                        <outlet property="sortSegment" destination="oFA-I3-epP" id="Ifj-sc-OrQ"/>
+                        <outlet property="tableView" destination="nZg-R3-9cW" id="mfI-S6-Es0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tC-ak-7D0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <stackView opaque="NO" contentMode="scaleToFill" id="e25-J4-kJH">
-                    <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <viewLayoutGuide key="safeArea" id="ygv-3c-FL3"/>
-                </stackView>
             </objects>
             <point key="canvasLocation" x="1808.6956521739132" y="138.61607142857142"/>
         </scene>
@@ -175,41 +192,57 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sol-Kb-jkv">
                                 <rect key="frame" x="0.0" y="257" width="414" height="216"/>
                             </datePicker>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGX-Sz-YH7">
-                                <rect key="frame" x="40" y="493" width="106" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Completed"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5H-jY-ozF">
-                                <rect key="frame" x="312" y="493" width="62" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Delete"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="166" translatesAutoresizingMaskIntoConstraints="NO" id="5hF-rI-hJg">
+                                <rect key="frame" x="40" y="493" width="334" height="39"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGX-Sz-YH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Completed"/>
+                                        <connections>
+                                            <action selector="markCompleted:" destination="C1o-8Y-gJu" eventType="touchUpInside" id="AzB-3L-1i4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5H-jY-ozF">
+                                        <rect key="frame" x="272" y="0.0" width="62" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Delete"/>
+                                        <connections>
+                                            <action selector="deleteTask:" destination="C1o-8Y-gJu" eventType="touchUpInside" id="q2l-L1-Pvh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="eO4-Nq-LeJ" firstAttribute="trailing" secondItem="I5H-jY-ozF" secondAttribute="trailing" constant="40" id="CWS-bM-f4Q"/>
                             <constraint firstItem="eO4-Nq-LeJ" firstAttribute="trailing" secondItem="m5u-cs-iWi" secondAttribute="trailing" constant="10" id="ER5-p3-Fob"/>
                             <constraint firstItem="MUS-q9-uxw" firstAttribute="top" secondItem="ZsA-2e-T12" secondAttribute="bottom" constant="30" id="Fez-ss-rpI"/>
                             <constraint firstItem="sol-Kb-jkv" firstAttribute="trailing" secondItem="eO4-Nq-LeJ" secondAttribute="trailing" id="IfG-6b-HAV"/>
-                            <constraint firstItem="DGX-Sz-YH7" firstAttribute="top" secondItem="sol-Kb-jkv" secondAttribute="bottom" constant="20" id="Lzj-z3-IMf"/>
                             <constraint firstItem="MUS-q9-uxw" firstAttribute="leading" secondItem="eO4-Nq-LeJ" secondAttribute="leading" constant="10" id="S8y-LS-i69"/>
                             <constraint firstItem="m5u-cs-iWi" firstAttribute="top" secondItem="eO4-Nq-LeJ" secondAttribute="top" constant="10" id="WVo-Jz-WQw"/>
                             <constraint firstItem="eO4-Nq-LeJ" firstAttribute="trailing" secondItem="ZsA-2e-T12" secondAttribute="trailing" constant="20" id="Wqd-KL-dgE"/>
                             <constraint firstItem="sol-Kb-jkv" firstAttribute="leading" secondItem="eO4-Nq-LeJ" secondAttribute="leading" id="cN1-nL-LIW"/>
                             <constraint firstItem="m5u-cs-iWi" firstAttribute="leading" secondItem="eO4-Nq-LeJ" secondAttribute="leading" constant="10" id="fop-fx-Jvc"/>
-                            <constraint firstItem="DGX-Sz-YH7" firstAttribute="leading" secondItem="eO4-Nq-LeJ" secondAttribute="leading" constant="40" id="hwx-OY-BmX"/>
                             <constraint firstItem="ZsA-2e-T12" firstAttribute="leading" secondItem="eO4-Nq-LeJ" secondAttribute="leading" constant="20" id="kYe-9W-pkO"/>
                             <constraint firstItem="sol-Kb-jkv" firstAttribute="top" secondItem="MUS-q9-uxw" secondAttribute="bottom" constant="20" id="p8l-ol-xdk"/>
                             <constraint firstItem="eO4-Nq-LeJ" firstAttribute="trailing" secondItem="MUS-q9-uxw" secondAttribute="trailing" constant="10" id="qGv-q7-HZ0"/>
-                            <constraint firstItem="I5H-jY-ozF" firstAttribute="top" secondItem="sol-Kb-jkv" secondAttribute="bottom" constant="20" id="sAU-QP-ocn"/>
                             <constraint firstItem="ZsA-2e-T12" firstAttribute="top" secondItem="m5u-cs-iWi" secondAttribute="bottom" constant="20" id="wTO-NF-yCK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eO4-Nq-LeJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="5IQ-Kd-cr9">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="N80-Eo-ivR"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="N80-Eo-ivR">
+                            <connections>
+                                <action selector="saveTask:" destination="C1o-8Y-gJu" id="SSf-jP-h4A"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="buttonStack" destination="5hF-rI-hJg" id="duW-Zd-hEW"/>
+                        <outlet property="deadlineLabel" destination="sol-Kb-jkv" id="ng5-AO-YYb"/>
+                        <outlet property="todoTitleLabel" destination="ZsA-2e-T12" id="xr5-ZD-x7E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQt-lD-16K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
