@@ -213,7 +213,7 @@ extension TaskListViewController: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
         
-        delete.backgroundColor = #colorLiteral(red: 1, green: 0.07238733253, blue: 0, alpha: 1)
+        delete.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         delete.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [delete])
     }

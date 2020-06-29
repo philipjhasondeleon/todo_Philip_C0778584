@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         
     //    to be shown if user enters existing category name
         func showAlert() {
-            let alert = UIAlertController(title: "Category with same name already Exists!", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Category name already Exists!", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
 
@@ -194,7 +194,7 @@ class ViewController: UIViewController {
                     completion(true)
             }
             
-            delete.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            delete.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
             delete.image = UIImage(systemName: "trash.fill")
             return UISwipeActionsConfiguration(actions: [delete])
         }

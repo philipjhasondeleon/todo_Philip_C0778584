@@ -70,7 +70,7 @@ class TodoViewController: UIViewController {
     
         func checkTitle() -> Bool {
             if (todoTitleLabel.text?.isEmpty ?? true) {
-                let alert = UIAlertController(title: "Title can't be blank!", message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Please enter the title!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return false
